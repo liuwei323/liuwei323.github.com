@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" >
+<head>
+    <title>JavaScript 截图效果『截取图片局部』</title>
+    <style type="text/css">
+        #box{
+            overflow:hidden;border:1px solid #000;width:100px;
+            height:100px;margin:3px;background-color:#0182c4;
+            position:absolute;top:1px;left:1px;
+        }
+        #mainBox {
+            padding:3px;border:1px solid #000;
+            width:276px;height:110px;
+        }
+    </style>
+
+    <script type="text/javascript">
+        /**
+         *
+         * 2009-03-04 Topcss
+         * QQ:419074376
+         * hi.baidu.com/topcss
+         *
+         */
+        function $(id){return document.getElementById(id);}
+
+        function change(evt){
+            evt = evt || window.event;
+
+            xPag = evt.offsetX == undefined ? getOffset(evt).offsetX : evt.offsetX;
+            yPag = evt.offsetY == undefined ? getOffset(evt).offsetY : evt.offsetY;
+
+            a = $("box").offsetWidth / 2;
+            b = $("box").offsetHeight / 2;
+
+            $("png").style.marginTop = - (yPag - b) + "px";
+            $("png").style.marginLeft = - (xPag - a) + "px";
+        }
+
+
+        //ff
+        function getOffset(evt)
+        {
+            var target = evt.target;
+            if (target.offsetLeft == undefined)
+            {
+                target = target.parentNode;
+            }
+            var pageCoord = getPageCoord(target);
+            var eventCoord =
+            {
+                x: window.pageXOffset + evt.clientX,
+                y: window.pageYOffset + evt.clientY
+            };
+            var offset =
+            {
+                offsetX: eventCoord.x - pageCoord.x,
+                offsetY: eventCoord.y - pageCoord.y
+            };
+            return offset;
+        }
+
+        function getPageCoord(element)
+        {
+            var coord = {x: 0, y: 0};
+            while (element)
+            {
+                coord.x += element.offsetLeft;
+                coord.y += element.offsetTop;
+                element = element.offsetParent;
+            }
+            return coord;
+        }
+
+
+    </script>
+</head>
+<body>
+
+<div id="box">
+    <img src="yuantu.png" id="png"/>
+</div>
+
+<br /><br /><br /><br /><br /><br />
+
+<div id="mainBox" onmousemove="change(event);">
+    <img src="yuantu.png" />
+</div>
+<p>把鼠标滑过较大的图片，将出现效果！</p>
+
+</body>
+</html>

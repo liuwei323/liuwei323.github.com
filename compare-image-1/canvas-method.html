@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>测试两张图片是否相同</title>
+
+    <script src="eventproxy.js"></script>
+    <script src="hanming.js"></script>
+</head>
+<body>
+<canvas id="draw_image_canvas" style="background:#ccc"></canvas>
+
+    <script>
+
+        getTwoImgHanMing('wu-suo.png','you-gao.png',function(hanming) {
+            console.log(hanming);
+        })
+
+    </script>
+
+
+</body>
+</html>
